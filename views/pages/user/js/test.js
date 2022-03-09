@@ -15,6 +15,7 @@ $(function () {
         var result = reg.test(password);
         if(result == false){
             alert("密码不能为纯数字，不能为纯小写字母，不能为纯大写字母，不能为纯特殊符号，至少8-16位")
+            return false;
         }
         //获取用户输入的确认密码
         var repwd = $("#repwd").val();
