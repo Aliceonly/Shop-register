@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os/exec"
 	_ "path/filepath"
 	"tpshop/controller"
 	_ "tpshop/Helpers"
@@ -29,7 +30,13 @@ func main() {
 	//获取所有用户
 	http.HandleFunc("/getUserInfo", controller.GetUserInfo)
 
-	fmt.Println("系统已经启动，访问系统的地址为","http://127.0.0.1:8080/main")
+	fmt.Println("Tpshop商城已经启动，访问地址为","http://127.0.0.1:8080/main")
+
+	cmd := exec.Command("explorer", "http://127.0.0.1:8080/main")
+	err := cmd.Start()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 
 	http.ListenAndServe(":8080", nil)
 	// ginRouter.GET("/getCaptcha", controller.GetCaptcha)
