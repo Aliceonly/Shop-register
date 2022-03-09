@@ -16,6 +16,8 @@ func CheckUserNameAndPassword(username string, password string) (*model.User_che
 	return user, nil
 }
 
+
+
 //CheckUserName 根据用户名和密码从数据库中查询一条记录
 func CheckUserName(username string) (*model.User_chenjunjie, error) {
 	//写sql语句
