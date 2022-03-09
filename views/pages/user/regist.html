@@ -2,34 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>注册用户</title>
 <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
-
-<style type="text/css">
-		.login_form{
-			height: 585px;
-    		margin-top: -60px;
-		}
-		html,body{
-		width: 100%;
-		height: 100%;
-		}
-		.mui-content{
-			background: url(background.jpg) bottom center no-repeat #efeff4 ;
-			background-size: 100% 100%;
-			width: 100%;
-			height: 100%;
-		}
-        #canvas {
-        vertical-align: middle;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        cursor: pointer;
-        }
-
-</style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-<script>
+
+<script>//图像验证码
  $(function(){
   var show_num = [];
   draw(show_num);
@@ -43,7 +21,7 @@
     alert('请输入验证码！');
 	return false;
    }else if(val == num){
-    // alert('提交成功！');
+    alert('提交成功！');
     $("#itxt").val('');
 	return ture;
     // draw(show_num);
@@ -111,30 +89,15 @@
 		$("#sub_btn").click(function(){
 			//获取用户输入的用户名
 			var username = $("#username").val();
+			 
 			//获取用户输入的密码
 			var password = $("#password").val();
+			console.log(password)
 			//获取用户输入的确认密码
 			var repwd = $("#repwd").val();
-			var phone = $("#phone").val();
-			var email = $("#email").val();
+			console.log(repwd)
 			if(repwd == ""){
 				alert("确认密码不能为空！");
-				return false;
-			}
-			if(username == ""){
-				alert("用户名不能为空！");
-				return false;
-			}
-			if(password == ""){
-				alert("密码不能为空！");
-				return false;
-			}
-			if(phone == ""){
-				alert("手机号不能为空！");
-				return false;
-			}
-			if(email == ""){
-				alert("邮箱不能为空！");
 				return false;
 			}
 			//判断两次输入的密码是否一致
@@ -144,10 +107,8 @@
 				alert("两次输入的密码不一致！");
 				return false;
 			}
-			if(document.getElementById("agree").checked=false){
-				alert("请先阅读并同意《最好的B2BC商城服务协议》！");
-				return false;
-			}
+			//获取用户输入的邮箱
+			var email = $("#email").val();
 		});
 		//将显示错误提示信息的span标签隐藏
 		$("#msg").hide();
@@ -174,86 +135,36 @@
 		});
 	});
 </script>
-<script>//验证码
-	var counts = 60;
-	function settime(val) {
-	 if(counts == 0) {
-	  val.removeAttribute("disabled");
-	  val.value = "获取验证码";
-	  counts = 60;
-	  return false;
-	 } else {
-	  val.setAttribute("disabled", true);
-	  val.value = "重新发送（" + counts + "）";
-	  counts--;
-	 }
-	 setTimeout(function() {
-	  settime(val);
-	 }, 1000);
-	}
-	$(function(){
-//获取验证码
-$("#verCodeBtn").click(function() {
-var userinfo = {
-"UserPhoneNum": '86//' + $("input[name='phone']").val()
-}
-$.ajax({
-url: "https://www.xxxxx.cn/user/sendcode/",
-data: userinfo,
-type: "get",
-success: function(data) {
-if(JSON.parse(data).state === 404 || JSON.parse(data).state === 202 || userinfo.UserPhoneNum === '86//') {
- alert("验证码发送失败")
-} else {
- alert("验证码发送成功，请耐心等待")
-}
-},
-error: function() {
-alert("发送失败");
-}
-});
-});
-})
-</script>
-<script type="text/javascript">
+ 
+
+<script type="text/javascript"> //勾选协议才能注册
 	function disable()
 	  {
 	  document.getElementById("sub_btn").disabled=true
-	  document.getElementById("sub_btn").style.cssText="background-color: #5D5D5D;"
 	  }
 	function enable()
 	  {
 	  document.getElementById("sub_btn").disabled=false
-	  document.getElementById("sub_btn").style.cssText="background-color: #39987c;"
 	  }
 	</script>
+
 </head>
-<body background="background.jpg"
-style=" background-repeat:no-repeat ;
-background-size:100% 100%;
-background-attachment: fixed;">
+<body 
+ 
+ 
+ 
+ 
+>
 		<div id="login_header">
 		</div>
 		
 			<div class="login_banner" class="mui-content">
 			
-				<div id="l_content">
-					<span class="login_word">正在注册用户</span>
-				</div>
-				
 				<div id="content">
 					<div class="login_form">
 						<div class="login_box">
-							<div class="tit">
-								<h1>注册用户</h1>
-								<span class="errorMsg" id="msg">{{.}}</span>
-							</div>
 							<div class="form">
 								<form action="/regist" method="POST">
-									<label>用户名称：</label>
-									<input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1" name="username" id="username" />
-									<br />
-									<br />
 									<label>用户密码：</label>
 									<input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" id="password" />
 									<br />
@@ -266,14 +177,14 @@ background-attachment: fixed;">
 									<input class="itxt" type="text" placeholder="请输入手机号码" value="" maxlength="11" autocomplete="off" tabindex="1" name="phone" id="phone" />
 									<br />
 									<br />
-									<input class="itxt" type="" name="verCode" id="verCode" value="" placeholder="请输入短信验证码" maxlength="6"/>
-									<input class="itxt" style="width:120px;height: 38px;" type="button" name="" id="verCodeBtn" value="获取验证码" onclick="settime(this);"/>
-									<br />
-									<br />
-									<label>电子邮件：</label>
-									<input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" />
-									<br />
-									<br />
+									<!-- <input class="itxt" type="" name="verCode" id="verCode" value="" placeholder="请输入短信验证码" maxlength="6"/> -->
+									<!-- <input class="itxt" style="width:120px;height: 38px;" type="button" name="" id="verCodeBtn" value="获取验证码" onclick="settime(this);"/> -->
+									<!-- <br /> -->
+									<!-- <br /> -->
+									<!-- <label>电子邮件：</label> -->
+									<!-- <input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" /> -->
+									<!-- <br /> -->
+									<!-- <br /> -->
 									<input type="text" value="" placeholder="请输入图形验证码" class="itxt" id="itxt">
 									<canvas title="刷新验证码" id="canvas" width="100" height="30"></canvas>	
 									<br />						
@@ -282,7 +193,7 @@ background-attachment: fixed;">
 									<input class="itxt" type="text" placeholder="请输入推荐人手机号" value="" maxlength="11" autocomplete="off" tabindex="1" name="rec_phone" id="rec_phone" />
 									<br />
 									<div></div>
-									<input type="checkBox" id="agree" onclick="if (this.checked) {enable()} else {disable()}">  我已阅读并同意<a href="#" style="text-decoration:none;color: blue;">《最好的B2BC商城服务协议》</a>
+									<input type="checkBox" onclick="if (this.checked) {enable()} else {disable()}">  我已阅读并同意<a href="#" style="text-decoration:none;color: blue;">《最好的B2BC商城服务协议》</a>
 									<div></div>
 									<input type="submit" value="注册" disabled="true" id="sub_btn" />
 								</form>
@@ -292,8 +203,26 @@ background-attachment: fixed;">
 					</div>
 				</div>
 			</div>
-		<div id="bottom">
-			<a style="float: right;text-decoration:none;" href="/main">放弃添加</a>
-		</div>
+		 
+		 
+		 
+
+
+		<script src="js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Carousel -->
+		<script src="js/owl.carousel.min.js"></script>
+		<!-- countTo -->
+		<script src="js/jquery.countTo.js"></script>
+		<!-- Magnific Popup -->
+		<script src="js/jquery.magnific-popup.min.js"></script>
+		<script src="js/magnific-popup-options.js"></script>
+		<!-- Main -->
+		<script src="js/main.js"></script>
 </body>
 </html>
