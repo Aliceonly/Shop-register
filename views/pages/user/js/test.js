@@ -11,7 +11,7 @@ $(function () {
         var phonelength = $("#phone").val().length;
         //获取用户输入的密码
         var password = $("#password").val();
-        reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,}$/;
+        reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{10,}$/;
         var result = reg.test(password);
         if(result == false){
             alert("密码不能为纯数字，不能为纯小写字母，不能为纯大写字母，不能为纯特殊符号，至少8-16位")
