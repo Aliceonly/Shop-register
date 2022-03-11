@@ -7,8 +7,8 @@ $(function () {
     $("#sub_btn").on('click', function () {
         //获取用户的手机号
         var phone = $("#phone").val();
-        //获取用户的手机号位数
-        var phonelength = $("#phone").val().length;
+        //获取推荐人手机号
+        var referphone = $("#referphone").val();
         //获取用户输入的密码
         var password = $("#password").val();
         reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,16}$/;
@@ -23,10 +23,14 @@ $(function () {
             alert("请输入手机号码！");
             return false;
         }
-        if (phonelength != 11) {
-            alert("请输入正确的手机号码！");
-            return false;
+        if(!(/^1[34578]\d{9}$/.test(phone))){ 
+            alert("请输入正确的手机号！");  
+            return false; 
         }
+        if(!(/^1[34578]\d{9}$/.test(referphone))){ 
+            alert("请输入正确的推荐人手机号！");  
+            return false; 
+        } 
         if (password == "") {
             alert("请输入密码！");
             return false;
