@@ -13,7 +13,7 @@ $(function () {
         var password = $("#password").val();
         reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{8,16}$/;
         var result = reg.test(password);
-        if(result == false){
+        if (result == false) {
             alert("密码不能为纯数字，不能为纯小写字母，不能为纯大写字母，不能为纯特殊符号，至少8-16位")
             return false;
         }
@@ -23,14 +23,16 @@ $(function () {
             alert("请输入手机号码！");
             return false;
         }
-        if(!(/^1[34578]\d{9}$/.test(phone))){ 
-            alert("请输入正确的手机号！");  
-            return false; 
+        if (!(/^1[34578]\d{9}$/.test(phone))) {
+            alert("请输入正确的手机号！");
+            return false;
         }
-        if(!(/^1[34578]\d{9}$/.test(referphone))){ 
-            alert("请输入正确的推荐人手机号！");  
-            return false; 
-        } 
+        if (referphone.length != 0) {
+            if (!(/^1[34578]\d{9}$/.test(referphone))) {
+                alert("请输入正确的推荐人手机号！");
+                return false;
+            }
+        }
         if (password == "") {
             alert("请输入密码！");
             return false;
